@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">tp1</string>
+    <string name="start">démarrer</string>
+    <string name="finish">finir</string>
+</resources>
