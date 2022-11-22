@@ -1,6 +1,7 @@
 package com.example.tp1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,14 +27,14 @@ public class TP1_Activity extends AppCompatActivity {
         log = findViewById(R.id.log);
         log.append("onCreate " + numero + "\n");
 
-        Button start = findViewById(R.id.start);
+        AppCompatButton start = findViewById(R.id.start);
         start.setOnClickListener(view -> {
             Intent intent = new Intent(this, TP1_Activity.class);
             intent.putExtra("numero", numero);
             startActivity(intent);
         });
 
-        Button finish = findViewById(R.id.finish);
+        AppCompatButton finish = findViewById(R.id.finish);
         finish.setOnClickListener(view -> {
             finish();
         });
