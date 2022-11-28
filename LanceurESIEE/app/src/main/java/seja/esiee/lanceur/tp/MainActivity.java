@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         tp1 = (Button)findViewById(R.id.button1);
         intent.setAction(getString(R.string.tp1));
-        tp1.setEnabled(isIntentAvailable(this,intent));
+        //tp1.setEnabled(isIntentAvailable(this,intent));
         //tp1.setBackgroundColor(getRandomColor());
         //setBackgroundColor(tp1);
         //tp1.setTextColor(getRandomColor());
