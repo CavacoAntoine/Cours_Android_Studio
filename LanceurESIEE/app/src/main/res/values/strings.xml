@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">LanceurESIEE</string>
+
+    <string name="tp1">APPLI_TP1</string>
+    <string name="tp2">APPLI_TP2</string>
+    <string name="tp3">APPLI_TP3</string>
+    <string name="tp4">APPLI_TP4</string>
+    <string name="tp5">APPLI_TP5</string>
+    <string name="tp6">APPLI_TP6</string>
+    <string name="tp7">APPLI_TP7</string>
+    <string name="tp8">APPLI_TP8</string>
+    <string name="tp9">APPLI_TP9</string>
+    <string name="tp10">APPLI_TP10</string>
+    <string name="tp11">APPLI_TP11</string>
+    <string name="tp12">APPLI_TP12</string>
+
+
+    <string name="text_tp1"><b><u>tp1</u></b></string>
+    <string name="text_tp2"><b><u>tp2</u></b></string>
+    <string name="text_tp3"><b><u>tp3</u></b></string>
+    <string name="text_tp4"><b><u>tp4</u></b></string>
+    <string name="text_tp5"><b><u>tp5</u></b></string>
+    <string name="text_tp6"><b><u>tp6</u></b></string>
+    <string name="text_tp7"><b><u>tp7</u></b></string>
+    <string name="text_tp8"><b><u>tp8</u></b></string>
+    <string name="text_tp9"><b><u>tp9</u></b></string>
+    <string name="text_tp10"><b><u>tp10</u></b></string>
+    <string name="text_tp11"><b><u>tp11</u></b></string>
+    <string name="text_tp12"><b>test</b></string>
+
+
+
+    <string name="intent"><b><u>A chaque clic:</u></b>\n
+                          Intent intent = new Intent();\n
+        intent.setAction(\u0022<b>APPLI_TP<u>X</u></b>\u0022);\n
+                          startActivity(intent);</string>
+
+    <string name="intent_filter"><b><u>Activité appelée</u>, cf. AndroidManifest.xml</b>\n
+                &lt;intent-filter&gt;\n
+        &lt;action android:name=\u0022<b>APPLI_TP<u>X</u></b>\u0022 &#47;&gt;\n
+                  &lt;category android:name=\u0022android.intent.category.DEFAULT\u0022 &#47;&gt;\n
+            &lt;&#47;intent-filter&gt;</string>
+</resources>
