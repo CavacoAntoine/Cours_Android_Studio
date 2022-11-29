@@ -77,6 +77,12 @@ public class Calculette extends Observable implements CalculetteI {
         try {
             int op2 = pile.depiler();
             int op1 = pile.depiler();
+            if(op2 == 0) {
+                this.enter(op1);
+                setChanged();
+                notifyObservers();
+                throw new CalculetteException("Division par zéro");
+            }
             pile.empiler(op1 / op2);
             setChanged();
             notifyObservers();

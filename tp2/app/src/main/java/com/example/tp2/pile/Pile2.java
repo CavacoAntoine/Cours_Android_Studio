@@ -57,12 +57,7 @@ public class Pile2<T> implements PileI<T>{
    * @return une repr�sentation en String d'une pile
    */ 
   public String toString(){
-    String s = "[";
-    for(int i = stk.size()-1; i>=0;i--){
-      s = s + stk.elementAt(i);
-      if(i>0) s = s+ ", ";
-    }
-    return s + "]";
+    return stk.toString();
   }
   
   /** Retourne la taille de la pile
