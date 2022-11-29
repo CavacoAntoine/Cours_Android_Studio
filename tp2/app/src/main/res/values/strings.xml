@@ -5,5 +5,5 @@
     <string name="Moins">-</string>
     <string name="Mult">*</string>
     <string name="Div">/</string>
-    <string name="Par">()</string>
+    <string name="Clear">[]</string>
 </resources>
