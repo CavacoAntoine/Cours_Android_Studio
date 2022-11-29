@@ -89,6 +89,7 @@
     <EditText
         android:id="@+id/input"
         android:layout_width="0dp"
+        android:inputType="number"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH50"
