@@ -10,6 +10,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -21,10 +22,10 @@ import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
-    Calculette calculette;
-    AppCompatTextView affichage, erreurs;
-    EditText editText;
-    AppCompatButton buttonPile, buttonPlus, buttonMinus, buttonMult, buttonDiv, buttonClear;
+    private Calculette calculette;
+    private AppCompatTextView affichage, erreurs;
+    private EditText editText;
+    private AppCompatButton buttonPile, buttonPlus, buttonMinus, buttonMult, buttonDiv, buttonClear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
