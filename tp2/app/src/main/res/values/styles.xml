@@ -4,6 +4,5 @@
         <item name="android:background">@drawable/button_layout</item>
         <item name="android:textSize">15sp</item>
         <item name="android:padding">5dp</item>
-        <item name="layout_constraintDimensionRatio">2:1</item>
     </style>
 </resources>
