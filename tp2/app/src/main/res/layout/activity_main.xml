@@ -6,13 +6,150 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH30"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH50"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH65"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH80"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV33"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV66"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/screen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="35sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="1sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonPile"
+        style="@style/CalculetteButton."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:text="@string/Empiler"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH65"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH50" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonPlus"
+        style="@style/CalculetteButton."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:text="@string/Plus"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH65"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV66"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV33"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH50" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonMinus"
+        style="@style/CalculetteButton."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:text="@string/Moins"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH65"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV66"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH50" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonMult"
+        style="@style/CalculetteButton."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/Mult"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH80"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH65" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonDiv"
+        style="@style/CalculetteButton."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/Div"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH80"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV66"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV33"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH65" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonPar"
+        style="@style/CalculetteButton."
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/Par"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV66"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH65" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
