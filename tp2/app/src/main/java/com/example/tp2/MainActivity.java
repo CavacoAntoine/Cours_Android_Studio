@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     Calculette calculette;
     AppCompatTextView affichage, erreurs;
     EditText editText;
-    AppCompatButton empiler, plus, moins, fois, divisier, supprimer;
+    AppCompatButton buttonPile, buttonPlus, buttonMinus, buttonMult, buttonDiv, buttonClear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,27 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         this.calculette = new Calculette();
         calculette.addObserver(this);
+
+        this.affichage = findViewById(R.id.screen);
+        this.editText = findViewById(R.id.input);
+
+        this.buttonPile = findViewById(R.id.buttonPile);
+        buttonPile.setOnClickListener(view -> this.empile());
+
+        this.buttonPlus = findViewById(R.id.buttonPlus);
+        buttonPlus.setOnClickListener(view -> this.add());
+
+        this.buttonMinus = findViewById(R.id.buttonMinus);
+        buttonMinus.setOnClickListener(view -> this.sub());
+
+        this.buttonMult = findViewById(R.id.buttonMult);
+        buttonMult.setOnClickListener(view -> this.mul());
+
+        this.buttonDiv = findViewById(R.id.buttonDiv);
+        buttonDiv.setOnClickListener(view -> this.div());
+
+        this.buttonClear = findViewById(R.id.buttonClear);
+        buttonClear.setOnClickListener(view -> this.clear());
 
     }
 
@@ -69,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements Observer {
         } catch (CalculetteException e) {
             this.erreurs.setText(e.getMessage());
         }
+    }
+
+    public void clear(){
+        this.calculette.clear();
     }
 
     @Override
