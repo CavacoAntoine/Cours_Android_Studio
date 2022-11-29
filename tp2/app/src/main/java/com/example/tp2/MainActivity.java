@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         SmsManager sm = SmsManager.getDefault();
         String body = getString(R.string.app_name) + " : " + message + "\n";
-        sm.sendTextMessage("5556", null, body, null, null);
+        sm.sendTextMessage("5554", null, body, null, null);
 
     }
 
