@@ -4,7 +4,6 @@
 
     <permission
         android:name="login.permission.CALL_LOGIN"
-        android:permissionGroup="android.permission-group.PERSONAL_INFO"
         android:protectionLevel="dangerous" />
     
     <application

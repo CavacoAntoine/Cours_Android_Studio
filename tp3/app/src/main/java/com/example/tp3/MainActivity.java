@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,10 +36,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //this.buttonCall.setOnClickListener(view -> this.call());
-        //this.buttonWeb.setOnClickListener(view -> this.web());
+        //0770167488
+        this.editTextCall = findViewById(R.id.editTextCall);
 
-        this.buttonLogin = findViewById(R.id.login);
+        this.buttonCall = findViewById(R.id.buttonCall);
+        this.buttonCall.setOnClickListener(view -> this.call());
+
+        this.buttonWeb = findViewById(R.id.buttonWeb);
+        this.buttonWeb.setOnClickListener(view -> this.web());
+
+        this.buttonLogin = findViewById(R.id.buttonLogin);
         this.buttonLogin.setOnClickListener(view -> this.login());
 
     }
@@ -46,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
     private void call() {
         if(Autorisation.callPermission(this)) {
             String url = this.editTextCall.getText().toString();
+            Log.d("oioioi",url);
             if(!url.matches("(\\+)?\\d+")){
                 //Entrez un numéro de téléphone valide
                 return;
             }
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:"+url));
             startActivity(intent);
         }
     }
