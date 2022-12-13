@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void valider() {
         Intent intent = new Intent();
-        intent.putExtra("login", inputLogin.getText());
-        intent.putExtra("password",inputPassword.getText());
+        intent.putExtra("login", inputLogin.getText().toString());
+        intent.putExtra("password",inputPassword.getText().toString());
         setResult(RESULT_OK, intent);
         finish();
     }
