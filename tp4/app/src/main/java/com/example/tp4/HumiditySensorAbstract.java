@@ -6,4 +6,6 @@ public abstract class HumiditySensorAbstract{
 	
 	/* période minimale entre deux lectures */
 	public abstract long minimalPeriod();
+
+	public abstract void setUrlSensor(String urlSensor);
 }

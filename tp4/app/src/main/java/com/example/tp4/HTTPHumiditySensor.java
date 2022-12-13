@@ -20,9 +20,11 @@ public class HTTPHumiditySensor extends HumiditySensorAbstract{
     
   /** l'URL associ�e au capteur */
   private String urlSensor;
-  
-  
-  
+
+  public void setUrlSensor(String urlSensor) {
+    this.urlSensor = urlSensor;
+  }
+
   /** Constructeur d'une connexion avec un Capteur, valeur par d�faut
    * @param  urlSensor l'URL du capteur sur le Web en protocole HTTP
    */
