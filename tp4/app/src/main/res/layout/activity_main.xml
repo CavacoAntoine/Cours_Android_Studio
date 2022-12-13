@@ -27,6 +27,17 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="0dp"
@@ -47,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toStartOf="@id/buttonSet"
         app:layout_constraintStart_toEndOf="@id/buttonStart"
-        app:layout_constraintTop_toTopOf="guidelineH10" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
 
     <Button
         android:id="@+id/buttonSet"
@@ -58,17 +69,17 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonStop"
-        app:layout_constraintTop_toTopOf="guidelineH10" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH20" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -77,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         style="?android:attr/progressBarStyleHorizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH20" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH30" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
