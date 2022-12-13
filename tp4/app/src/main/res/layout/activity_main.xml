@@ -20,16 +20,23 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/start"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH10"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toStartOf="@id/buttonStop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guidelineH10" />
 
     <Button
         android:id="@+id/buttonStop"
@@ -37,10 +44,21 @@
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/stop"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH10"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
+        app:layout_constraintEnd_toStartOf="@id/buttonSet"
         app:layout_constraintStart_toEndOf="@id/buttonStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="guidelineH10" />
+
+    <Button
+        android:id="@+id/buttonSet"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:text="@string/set"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonStop"
+        app:layout_constraintTop_toTopOf="guidelineH10" />
 
     <TextView
         android:id="@+id/text"
