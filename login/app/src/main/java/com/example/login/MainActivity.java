@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonValider, buttonAnnuler;
+    private EditText inputLogin, inputPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
         this.buttonAnnuler = findViewById(R.id.annuler);
         this.buttonAnnuler.setOnClickListener(view -> this.annuler());
 
+        this.inputLogin = findViewById(R.id.inputLogin);
+        this.inputPassword = findViewById(R.id.inputPassword);
+
     }
 
     private void valider() {
         Intent intent = new Intent();
-        intent.putExtra("login", "ouicmoi");
-        intent.putExtra("password","1234");
+        intent.putExtra("login", inputLogin.getText());
+        intent.putExtra("password",inputPassword.getText());
         setResult(RESULT_OK, intent);
         finish();
     }
