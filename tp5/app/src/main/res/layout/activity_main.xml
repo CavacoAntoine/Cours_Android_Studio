@@ -46,31 +46,31 @@
         android:id="@+id/IP"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH10"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH">
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineIPV50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.50" />
+            app:layout_constraintGuide_percent="0.44" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineIPV55"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.55" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineIPV80"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.80" />
+            app:layout_constraintGuide_percent="0.69" />
 
         <EditText
             android:id="@+id/inputIP"
@@ -86,6 +86,8 @@
             android:id="@+id/deuxPoints"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:gravity="center"
+            android:textStyle="bold"
             android:text="@string/deux_points"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guidelineIPV55"
@@ -102,89 +104,17 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSet"
             style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/button_layout"
             android:text="@string/set"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guidelineIPV80"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/xy"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineXYV20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineXYV50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="206dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineXYV70"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.70" />
-
-        <TextView
-            android:id="@+id/X"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/displayX"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineXYV20"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Y"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/displayY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineXYV70"
-            app:layout_constraintStart_toStartOf="@+id/guidelineXYV50"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/inputX"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineXYV50"
-            app:layout_constraintStart_toStartOf="@+id/guidelineXYV20"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <EditText
-            android:id="@+id/inputY"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guidelineXYV70"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -228,7 +158,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.66" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonUp"
             style="@style/Button"
             android:layout_width="0dp"
@@ -239,7 +169,7 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineButtonV33"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonDown"
             style="@style/Button"
             android:layout_width="0dp"
@@ -250,7 +180,7 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineButtonV33"
             app:layout_constraintTop_toTopOf="@+id/guidelineButtonH66" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonLeft"
             style="@style/Button"
             android:layout_width="0dp"
@@ -262,7 +192,7 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineButtonH33" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonRight"
             style="@style/Button"
             android:layout_width="0dp"
@@ -275,7 +205,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonTab"
         style="@style/Button"
         android:layout_width="0dp"
@@ -286,7 +216,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonClick"
         style="@style/Button"
         android:layout_width="0dp"
@@ -297,7 +227,7 @@
         app:layout_constraintStart_toEndOf="@id/buttonTab"
         app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonMove"
         style="@style/Button"
         android:layout_width="0dp"
@@ -308,7 +238,7 @@
         app:layout_constraintStart_toEndOf="@id/buttonClick"
         app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonBeep"
         style="@style/Button"
         android:layout_width="0dp"
