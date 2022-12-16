@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "beep":
                 this.sender.offer("beep".getBytes());
+                Log.d("Beep","beep");
                 break;
             default:
                 return ;
