@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.lastClick = -1;
+        this.lastClick = 0;
+        this.currentClick = 0;
         this.isPress = false;
 
         this.ip = this.findViewById(R.id.inputIP);
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.press = this.findViewById(R.id.buttonPress);
         this.press.setOnClickListener(view -> this.onClickAction("press"));
+
     }
 
     private boolean onTouch(View view, MotionEvent motionEvent) {
@@ -99,14 +101,19 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "next":
                 this.sender.offer("next\n".getBytes());
+                break;
             case "previous":
                 this.sender.offer("previous\n".getBytes());
+                break;
             case "up":
                 this.sender.offer("up\n".getBytes());
+                break;
             case "down":
                 this.sender.offer("down\n".getBytes());
+                break;
             case "tab":
                 this.sender.offer("tab\n".getBytes());
+                break;
             case "click":
                 this.lastClick = currentClick;
                 this.currentClick = System.currentTimeMillis();
@@ -117,9 +124,10 @@ public class MainActivity extends AppCompatActivity {
                     this.sender.offer("clickDouble\n".getBytes());
                 }
                 this.sender.offer("click\n".getBytes());
-            case "move":
+                break;
             case "beep":
                 this.sender.offer("beep\n".getBytes());
+                break;
             case "press":
                 if(!isPress){
                     this.press.setText("Release");
@@ -130,10 +138,12 @@ public class MainActivity extends AppCompatActivity {
                     this.sender.offer("mouseRelease\n".getBytes());
                     this.isPress = false;
                 }
-            default:
-                Toast toast = Toast.makeText(this, "Send " + string +" !", Toast.LENGTH_SHORT);
-                toast.show();
+                break;
         }
+
+        Toast toast = Toast.makeText(this, "Send " + string +" !", Toast.LENGTH_SHORT);
+        toast.show();
+
     }
 
     private void enableButtons() {
