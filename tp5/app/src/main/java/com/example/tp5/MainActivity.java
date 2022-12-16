@@ -6,7 +6,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -74,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     Log.d("Set",e.getMessage());
                 }
+                break;
             case "next":
                 this.sender.offer("next\n".getBytes());
             case "previous":
