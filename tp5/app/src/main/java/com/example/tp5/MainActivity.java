@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.SynchronousQueue;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText ip, port, x, y;
     private Button set, next, previous, up, down, tab, click, move, beep;
     private long lastClick, currentClick;
-    private DataOutputStream out;
     private Socket socket;
     private Sender sender;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.sender = new Sender();
+
         this.lastClick = -1;
 
         this.ip = this.findViewById(R.id.inputIP);
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             case "set":
                 SocketInitalize socketInitalize = new SocketInitalize();
                 socketInitalize.execute(this.ip.getText().toString(), this.port.getText().toString());
+                try {
+                    this.sender = new Sender(socketInitalize.get());
+                    Toast toast = Toast.makeText(this, "Connexion effectué !", Toast.LENGTH_SHORT);
+                    toast.show();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "next":
                 this.sender.offer("next".getBytes());
@@ -83,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
             case "move":
                 break;
             case "beep":
-                this.sender.offer("beep".getBytes());
-                Log.d("Beep","beep");
+                this.sender.offer("Antoine le boss".getBytes());
+                Toast toast = Toast.makeText(this, "Send beep !", Toast.LENGTH_SHORT);
+                toast.show();
                 break;
             default:
                 return ;
@@ -94,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
     public class Sender extends Thread {
         private BlockingQueue<byte[]> queue;
 
-        public Sender() {
+        private DataOutputStream out;
+
+        public Sender(DataOutputStream out) {
             queue = new SynchronousQueue<byte[]>();
             this.start();
         }
@@ -113,23 +126,27 @@ public class MainActivity extends AppCompatActivity {
                     byte[] cmd = queue.take();
                     out.write(cmd);
                 } catch (Exception e) {
+                    Log.d("Sender", e.getMessage());
                 }
             }
         }
 
     }
 
-    private class SocketInitalize extends AsyncTask<String, Void, Void> {
+    private class SocketInitalize extends AsyncTask<String, Void, DataOutputStream> {
 
         @Override
-        protected Void doInBackground(String... strings) {
+        protected DataOutputStream doInBackground(String... strings) {
+            DataOutputStream out = null;
             try {
                 socket = new Socket(strings[0], Integer.parseInt(strings[1]));
+                Log.d("Socket", strings[0]);
+                Log.d("Socket", strings[1]);
                 out = new DataOutputStream(socket.getOutputStream());
             } catch (IOException e) {
                 Log.e("Socket", e.getMessage());
             }
-            return null;
+            return out;
         }
     }
 }
