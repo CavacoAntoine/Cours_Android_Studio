@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         this.lastClick = -1;
 
         this.ip = this.findViewById(R.id.inputIP);
@@ -39,13 +38,24 @@ public class MainActivity extends AppCompatActivity {
         this.set = this.findViewById(R.id.buttonSet);
         this.set.setOnClickListener(view -> this.onClickAction("set"));
 
-        //this.next.setOnClickListener(view -> this.onClickAction(new String[]{"next"}));
-        //this.previous.setOnClickListener(view -> this.onClickAction(new String[]{"previous"}));
-        //this.up.setOnClickListener(view -> this.onClickAction(new String[]{"up"}));
-        //this.down.setOnClickListener(view -> this.onClickAction(new String[]{"down"}));
-        //this.tab.setOnClickListener(view -> this.onClickAction(new String[]{"tab"}));
+        this.next = this.findViewById(R.id.buttonRight);
+        this.next.setOnClickListener(view -> this.onClickAction("next"));
+
+        this.previous = this.findViewById(R.id.buttonLeft);
+        this.previous.setOnClickListener(view -> this.onClickAction("previous"));
+
+        this.up = this.findViewById(R.id.buttonUp);
+        this.up.setOnClickListener(view -> this.onClickAction("up"));
+
+        this.down = this.findViewById(R.id.buttonDown);
+        this.down.setOnClickListener(view -> this.onClickAction("down"));
+
+        this.tab = this.findViewById(R.id.buttonTab);
+        this.tab.setOnClickListener(view -> this.onClickAction("tab"));
+
         this.beep = this.findViewById(R.id.buttonBeep);
         this.beep.setOnClickListener(view -> this.onClickAction("beep"));
+
         this.click = this.findViewById(R.id.buttonClick);
         this.click.setOnClickListener(view -> this.onClickAction("click"));
     }
@@ -60,26 +70,20 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(this, "Connexion effectué !", Toast.LENGTH_SHORT);
                     toast.show();
                 } catch (ExecutionException e) {
-                    e.printStackTrace();
+                    Log.d("Set",e.getMessage());
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Log.d("Set",e.getMessage());
                 }
-                break;
             case "next":
-                this.sender.offer("next".getBytes());
-                break;
+                this.sender.offer("next\n".getBytes());
             case "previous":
-                this.sender.offer("previous".getBytes());
-                break;
+                this.sender.offer("previous\n".getBytes());
             case "up":
-                this.sender.offer("up".getBytes());
-                break;
+                this.sender.offer("up\n".getBytes());
             case "down":
-                this.sender.offer("down".getBytes());
-                break;
+                this.sender.offer("down\n".getBytes());
             case "tab":
-                this.sender.offer("tab".getBytes());
-                break;
+                this.sender.offer("tab\n".getBytes());
             case "click":
                 this.lastClick = currentClick;
                 this.currentClick = System.currentTimeMillis();
@@ -90,16 +94,12 @@ public class MainActivity extends AppCompatActivity {
                     this.sender.offer("clickDouble\n".getBytes());
                 }
                 this.sender.offer("click\n".getBytes());
-                break;
             case "move":
-                break;
             case "beep":
                 this.sender.offer("beep\n".getBytes());
-                Toast toast = Toast.makeText(this, "Send beep !", Toast.LENGTH_SHORT);
-                toast.show();
-                break;
             default:
-                return ;
+                Toast toast = Toast.makeText(this, "Send " + string +" !", Toast.LENGTH_SHORT);
+                toast.show();
         }
     }
 
