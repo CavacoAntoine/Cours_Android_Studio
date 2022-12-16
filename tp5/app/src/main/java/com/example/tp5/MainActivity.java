@@ -1,6 +1,7 @@
 package com.example.tp5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import java.util.concurrent.SynchronousQueue;
 public class MainActivity extends AppCompatActivity {
 
     private EditText ip, port, x, y;
-    private Button set, next, previous, up, down, tab, click, move, beep;
+    private AppCompatButton set, next, previous, up, down, tab, click, move, beep;
     private long lastClick, currentClick;
     private Socket socket;
     private Sender sender;
@@ -86,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 if (this.currentClick - this.lastClick < 250) {
                     this.lastClick = 0;
                     this.currentClick = 0;
-                    this.sender.offer("clickDouble".getBytes());
+                    this.sender.offer("clickDouble\n".getBytes());
                 }
-                this.sender.offer("click".getBytes());
+                this.sender.offer("click\n".getBytes());
                 break;
             case "move":
                 break;
             case "beep":
-                this.sender.offer("Antoine le boss".getBytes());
+                this.sender.offer("beep\n".getBytes());
                 Toast toast = Toast.makeText(this, "Send beep !", Toast.LENGTH_SHORT);
                 toast.show();
                 break;
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         public Sender(DataOutputStream out) {
             queue = new SynchronousQueue<byte[]>();
+            this.out = out;
             this.start();
         }
 
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Socket", strings[1]);
                 out = new DataOutputStream(socket.getOutputStream());
             } catch (IOException e) {
-                Log.e("Socket", e.getMessage());
+                Log.d("Socket", e.getMessage());
             }
             return out;
         }
