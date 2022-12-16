@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private void onClickAction(String string){
         switch (string) {
             case "set":
+                enableButtons();
                 SocketInitalize socketInitalize = new SocketInitalize();
                 socketInitalize.execute(this.ip.getText().toString(), this.port.getText().toString());
                 try {
@@ -101,6 +102,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Send " + string +" !", Toast.LENGTH_SHORT);
                 toast.show();
         }
+    }
+
+    private void enableButtons() {
+        //private AppCompatButton set, next, previous, up, down, tab, click, move, beep;
+        this.next.setEnabled(true);
+        this.previous.setEnabled(true);
+        this.up.setEnabled(true);
+        this.down.setEnabled(true);
+        this.tab.setEnabled(true);
+        this.click.setEnabled(true);
+        this.move.setEnabled(true);
+        this.beep.setEnabled(true);
     }
 
     public class Sender extends Thread {
