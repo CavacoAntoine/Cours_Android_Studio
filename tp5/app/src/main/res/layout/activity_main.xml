@@ -7,6 +7,13 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,34 +21,35 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH25"
+        android:id="@+id/guidelineH20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH40"
+        android:id="@+id/guidelineH45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH80"
+        android:id="@+id/guidelineH55"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.80" />
+        app:layout_constraintGuide_percent="0.55" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/IP"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH25"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10">
+        app:layout_constraintTop_toTopOf="@+id/guidelineH">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineIPV50"
@@ -110,10 +118,10 @@
         android:id="@+id/xy"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH40"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH25">
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineXYV20"
@@ -181,11 +189,11 @@
         android:id="@+id/buttonPanel"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH80"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH45"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH40"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH20"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.Guideline
@@ -269,10 +277,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/tab"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
         app:layout_constraintEnd_toStartOf="@id/buttonClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH80" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
     <Button
         android:id="@+id/buttonClick"
@@ -280,10 +288,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/click"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
         app:layout_constraintEnd_toStartOf="@id/buttonMove"
         app:layout_constraintStart_toEndOf="@id/buttonTab"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH80" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
     <Button
         android:id="@+id/buttonMove"
@@ -291,10 +299,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/move"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
         app:layout_constraintEnd_toStartOf="@id/buttonBeep"
         app:layout_constraintStart_toEndOf="@id/buttonClick"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH80" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
     <Button
         android:id="@+id/buttonBeep"
@@ -302,9 +310,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/beep"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonMove"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH80" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
+    <View
+        android:id="@+id/pad"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH55" />
 </androidx.constraintlayout.widget.ConstraintLayout>
