@@ -226,23 +226,11 @@
         style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:enabled="false"
         android:text="@string/click"
-        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
-        app:layout_constraintEnd_toStartOf="@id/buttonMove"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBeep"
         app:layout_constraintStart_toEndOf="@id/buttonTab"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonMove"
-        style="@style/Button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/move"
-        android:enabled="false"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
-        app:layout_constraintEnd_toStartOf="@id/buttonBeep"
-        app:layout_constraintStart_toEndOf="@id/buttonClick"
         app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -250,11 +238,11 @@
         style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/beep"
         android:enabled="false"
+        android:text="@string/beep"
+        app:layout_constraintStart_toEndOf="@id/buttonClick"
         app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonMove"
         app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
     <View
