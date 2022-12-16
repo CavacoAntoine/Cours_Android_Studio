@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,13 +18,15 @@ import java.net.UnknownHostException;
 public class MainActivity extends AppCompatActivity {
 
     private EditText ip, port, x, y;
-    private Button set, next, previous, up, down, tab, click, move, bee;
-    private long lastClick;
+    private Button set, next, previous, up, down, tab, click, move, beep;
+    private long lastClick, currentClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.lastClick = -1;
 
         this.set.setOnClickListener(view -> this.onClickAction(new String[]{"set",
                 this.ip.getText().toString(), this.port.getText().toString()}));
@@ -33,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         this.down.setOnClickListener(view -> this.onClickAction(new String[]{"down"}));
         this.tab.setOnClickListener(view -> this.onClickAction(new String[]{"tab"}));
         this.click.setOnClickListener(view -> this.onClickAction(new String[]{"click"}));
-        this.click
-
+        this.click.setOnLongClickListener(view -> {
+            this.onClickAction(new String[]{"press"});
+            return true;
+        });
     }
 
     private void onClickAction(String[] strings){
@@ -52,6 +58,20 @@ public class MainActivity extends AppCompatActivity {
             case "tab":
                 break;
             case "click":
+                this.lastClick = currentClick;
+                this.currentClick = System.currentTimeMillis();
+
+                if (this.currentClick - this.lastClick < 250) {
+                    this.lastClick = 0;
+                    this.currentClick = 0;
+                    //Double click
+                }
+
+                //one click
+                break;
+            case "press":
+                break;
+            case "release":
                 break;
             case "move":
                 break;
