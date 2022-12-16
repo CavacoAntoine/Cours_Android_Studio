@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.editText = findViewById(R.id.editText);
         String url = this.loadURL_SENSOR();
         if(url == null) {
             this.ds2438 = new HTTPHumiditySensor();
         } else {
             this.ds2438 = new HTTPHumiditySensor(url);
+            this.editText.setText(url);
         }
 
         this.buttonStart = findViewById(R.id.buttonStart);
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         this.textView = findViewById(R.id.text);
         textView.setText("acquisition..., cliquez sur start");
         this.progressBar = findViewById(R.id.progress);
-        this.editText = findViewById(R.id.editText);
         this.view = findViewById(R.id.view);
         this.view.setOnClickListener(view -> this.setEdit());
     }

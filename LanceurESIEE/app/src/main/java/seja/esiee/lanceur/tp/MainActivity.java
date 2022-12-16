@@ -53,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
         tp4 = (Button)findViewById(R.id.button4);
         intent.setAction(getString(R.string.tp4));
-        tp4.setEnabled(isIntentAvailable(this,intent));
+        //tp4.setEnabled(isIntentAvailable(this,intent));
         //setBackgroundColor(tp4);
         //tp4.setBackgroundColor(getRandomColor());
         //tp4.setTextColor(getRandomColor());
 
         tp5 = (Button)findViewById(R.id.button5);
         intent.setAction(getString(R.string.tp5));
-        tp5.setEnabled(isIntentAvailable(this,intent));
+        //tp5.setEnabled(isIntentAvailable(this,intent));
         //setBackgroundColor(tp5);
         //tp5.setBackgroundColor(getRandomColor());
         //tp5.setTextColor(getRandomColor());
