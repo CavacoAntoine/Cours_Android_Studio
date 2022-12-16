@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.TextAppearance.AppCompat.Button." parent="">
+    <style name="Button" parent="">
         <item name="android:background">@drawable/button_layout</item>
         <item name="android:textSize">15sp</item>
         <item name="android:padding">5dp</item>

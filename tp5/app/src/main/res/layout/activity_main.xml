@@ -102,7 +102,7 @@
 
         <Button
             android:id="@+id/buttonSet"
-            style="@style/Base.TextAppearance.AppCompat.Button."
+            style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/set"
@@ -226,7 +226,7 @@
 
         <Button
             android:id="@+id/buttonUp"
-            style="@style/Base.TextAppearance.AppCompat.Button."
+            style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/up"
@@ -237,7 +237,7 @@
 
         <Button
             android:id="@+id/buttonDown"
-            style="@style/Base.TextAppearance.AppCompat.Button."
+            style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/down"
@@ -248,7 +248,7 @@
 
         <Button
             android:id="@+id/buttonLeft"
-            style="@style/Base.TextAppearance.AppCompat.Button."
+            style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/left"
@@ -260,7 +260,7 @@
 
         <Button
             android:id="@+id/buttonRight"
-            style="@style/Base.TextAppearance.AppCompat.Button."
+            style="@style/Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/right"
@@ -273,7 +273,7 @@
 
     <Button
         android:id="@+id/buttonTab"
-        style="@style/Base.TextAppearance.AppCompat.Button."
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/tab"
@@ -284,7 +284,7 @@
 
     <Button
         android:id="@+id/buttonClick"
-        style="@style/Base.TextAppearance.AppCompat.Button."
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/click"
@@ -295,7 +295,7 @@
 
     <Button
         android:id="@+id/buttonMove"
-        style="@style/Base.TextAppearance.AppCompat.Button."
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/move"
@@ -306,7 +306,7 @@
 
     <Button
         android:id="@+id/buttonBeep"
-        style="@style/Base.TextAppearance.AppCompat.Button."
+        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/beep"
