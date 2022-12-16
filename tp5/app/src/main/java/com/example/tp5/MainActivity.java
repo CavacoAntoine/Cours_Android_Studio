@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         this.port = this.findViewById(R.id.inputPort);
 
         this.set = this.findViewById(R.id.buttonSet);
-        this.set.setOnClickListener(view -> this.onClickAction(new String[]{"set",
-                this.ip.getText().toString(), this.port.getText().toString()}));
+        this.set.setOnClickListener(view -> this.onClickAction("set"));
 
         //this.next.setOnClickListener(view -> this.onClickAction(new String[]{"next"}));
         //this.previous.setOnClickListener(view -> this.onClickAction(new String[]{"previous"}));
@@ -44,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         //this.down.setOnClickListener(view -> this.onClickAction(new String[]{"down"}));
         //this.tab.setOnClickListener(view -> this.onClickAction(new String[]{"tab"}));
         this.beep = this.findViewById(R.id.buttonBeep);
-        this.beep.setOnClickListener(view -> this.onClickAction(new String[]{"beep"}));
+        this.beep.setOnClickListener(view -> this.onClickAction("beep"));
         this.click = this.findViewById(R.id.buttonClick);
-        this.click.setOnClickListener(view -> this.onClickAction(new String[]{"click"}));
+        this.click.setOnClickListener(view -> this.onClickAction("click"));
     }
 
-    private void onClickAction(String[] strings){
-        switch (strings[0]) {
+    private void onClickAction(String string){
+        switch (string) {
             case "set":
                 SocketInitalize socketInitalize = new SocketInitalize();
                 socketInitalize.execute(this.ip.getText().toString(), this.port.getText().toString());
