@@ -242,6 +242,18 @@
         android:text="@string/beep"
         app:layout_constraintStart_toEndOf="@id/buttonClick"
         app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
+        app:layout_constraintEnd_toStartOf="@id/buttonPress"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonPress"
+        style="@style/Button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:enabled="false"
+        android:text="@string/press"
+        app:layout_constraintStart_toEndOf="@id/buttonBeep"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineH55"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineH45" />
 
