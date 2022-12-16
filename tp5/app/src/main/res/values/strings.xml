@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">tp5</string>
+    <string name="app_name">tp1</string>
+    <string name="start">Démarrer</string>
+    <string name="finish">Finir</string>
+    <string name="TP1">TP1</string>
+    <string name="deux_points">:</string>
+    <string name="displayX">X :</string>
+    <string name="displayY">Y :</string>
+    <string name="set">Set</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="tab">Tab</string>
+    <string name="click">Click</string>
+    <string name="move">Move</string>
+    <string name="beep">Beep</string>
 </resources>

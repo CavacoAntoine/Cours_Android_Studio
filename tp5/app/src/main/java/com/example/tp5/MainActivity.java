@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
 public class MainActivity extends AppCompatActivity {
 
     private EditText ip, port, x, y;
-    private Button set, next, previous, up, down, tab, click, move, bee;
+    private Button set, next, previous, up, down, tab, click, move, beep;
     private long lastClick;
 
     @Override
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         this.down.setOnClickListener(view -> this.onClickAction(new String[]{"down"}));
         this.tab.setOnClickListener(view -> this.onClickAction(new String[]{"tab"}));
         this.click.setOnClickListener(view -> this.onClickAction(new String[]{"click"}));
-        this.click
 
     }
 
