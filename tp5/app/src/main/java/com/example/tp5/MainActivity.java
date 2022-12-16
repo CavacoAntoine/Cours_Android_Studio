@@ -28,8 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.sender = new Sender();
         this.lastClick = -1;
 
+        this.ip = this.findViewById(R.id.inputIP);
+        this.port = this.findViewById(R.id.inputPort);
+
+        this.set = this.findViewById(R.id.buttonSet);
         this.set.setOnClickListener(view -> this.onClickAction(new String[]{"set",
                 this.ip.getText().toString(), this.port.getText().toString()}));
 
@@ -47,16 +52,23 @@ public class MainActivity extends AppCompatActivity {
     private void onClickAction(String[] strings){
         switch (strings[0]) {
             case "set":
+                SocketInitalize socketInitalize = new SocketInitalize();
+                socketInitalize.execute(this.ip.getText().toString(), this.port.getText().toString());
                 break;
             case "next":
+                this.sender.offer("next".getBytes());
                 break;
             case "previous":
+                this.sender.offer("previous".getBytes());
                 break;
             case "up":
+                this.sender.offer("up".getBytes());
                 break;
             case "down":
+                this.sender.offer("down".getBytes());
                 break;
             case "tab":
+                this.sender.offer("tab".getBytes());
                 break;
             case "click":
                 this.lastClick = currentClick;
@@ -65,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 if (this.currentClick - this.lastClick < 250) {
                     this.lastClick = 0;
                     this.currentClick = 0;
-                    //Double click
+                    this.sender.offer("clickDouble".getBytes());
                 }
                 this.sender.offer("click".getBytes());
                 break;
