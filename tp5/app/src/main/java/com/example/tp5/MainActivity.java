@@ -1,25 +1,27 @@
 package com.example.tp5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.SynchronousQueue;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText ip, port, x, y;
-    private Button set, next, previous, up, down, tab, click, move, beep;
+    private AppCompatButton set, next, previous, up, down, tab, click, move, beep;
     private long lastClick, currentClick;
-    private DataOutputStream out;
     private Socket socket;
     private Sender sender;
 
@@ -28,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.sender = new Sender();
         this.lastClick = -1;
 
         this.ip = this.findViewById(R.id.inputIP);
@@ -37,13 +38,24 @@ public class MainActivity extends AppCompatActivity {
         this.set = this.findViewById(R.id.buttonSet);
         this.set.setOnClickListener(view -> this.onClickAction("set"));
 
-        //this.next.setOnClickListener(view -> this.onClickAction(new String[]{"next"}));
-        //this.previous.setOnClickListener(view -> this.onClickAction(new String[]{"previous"}));
-        //this.up.setOnClickListener(view -> this.onClickAction(new String[]{"up"}));
-        //this.down.setOnClickListener(view -> this.onClickAction(new String[]{"down"}));
-        //this.tab.setOnClickListener(view -> this.onClickAction(new String[]{"tab"}));
+        this.next = this.findViewById(R.id.buttonRight);
+        this.next.setOnClickListener(view -> this.onClickAction("next"));
+
+        this.previous = this.findViewById(R.id.buttonLeft);
+        this.previous.setOnClickListener(view -> this.onClickAction("previous"));
+
+        this.up = this.findViewById(R.id.buttonUp);
+        this.up.setOnClickListener(view -> this.onClickAction("up"));
+
+        this.down = this.findViewById(R.id.buttonDown);
+        this.down.setOnClickListener(view -> this.onClickAction("down"));
+
+        this.tab = this.findViewById(R.id.buttonTab);
+        this.tab.setOnClickListener(view -> this.onClickAction("tab"));
+
         this.beep = this.findViewById(R.id.buttonBeep);
         this.beep.setOnClickListener(view -> this.onClickAction("beep"));
+
         this.click = this.findViewById(R.id.buttonClick);
         this.click.setOnClickListener(view -> this.onClickAction("click"));
     }
@@ -53,22 +65,25 @@ public class MainActivity extends AppCompatActivity {
             case "set":
                 SocketInitalize socketInitalize = new SocketInitalize();
                 socketInitalize.execute(this.ip.getText().toString(), this.port.getText().toString());
-                break;
+                try {
+                    this.sender = new Sender(socketInitalize.get());
+                    Toast toast = Toast.makeText(this, "Connexion effectué !", Toast.LENGTH_SHORT);
+                    toast.show();
+                } catch (ExecutionException e) {
+                    Log.d("Set",e.getMessage());
+                } catch (InterruptedException e) {
+                    Log.d("Set",e.getMessage());
+                }
             case "next":
-                this.sender.offer("next".getBytes());
-                break;
+                this.sender.offer("next\n".getBytes());
             case "previous":
-                this.sender.offer("previous".getBytes());
-                break;
+                this.sender.offer("previous\n".getBytes());
             case "up":
-                this.sender.offer("up".getBytes());
-                break;
+                this.sender.offer("up\n".getBytes());
             case "down":
-                this.sender.offer("down".getBytes());
-                break;
+                this.sender.offer("down\n".getBytes());
             case "tab":
-                this.sender.offer("tab".getBytes());
-                break;
+                this.sender.offer("tab\n".getBytes());
             case "click":
                 this.lastClick = currentClick;
                 this.currentClick = System.currentTimeMillis();
@@ -76,26 +91,26 @@ public class MainActivity extends AppCompatActivity {
                 if (this.currentClick - this.lastClick < 250) {
                     this.lastClick = 0;
                     this.currentClick = 0;
-                    this.sender.offer("clickDouble".getBytes());
+                    this.sender.offer("clickDouble\n".getBytes());
                 }
-                this.sender.offer("click".getBytes());
-                break;
+                this.sender.offer("click\n".getBytes());
             case "move":
-                break;
             case "beep":
-                this.sender.offer("beep".getBytes());
-                Log.d("Beep","beep");
-                break;
+                this.sender.offer("beep\n".getBytes());
             default:
-                return ;
+                Toast toast = Toast.makeText(this, "Send " + string +" !", Toast.LENGTH_SHORT);
+                toast.show();
         }
     }
 
     public class Sender extends Thread {
         private BlockingQueue<byte[]> queue;
 
-        public Sender() {
+        private DataOutputStream out;
+
+        public Sender(DataOutputStream out) {
             queue = new SynchronousQueue<byte[]>();
+            this.out = out;
             this.start();
         }
 
@@ -113,23 +128,27 @@ public class MainActivity extends AppCompatActivity {
                     byte[] cmd = queue.take();
                     out.write(cmd);
                 } catch (Exception e) {
+                    Log.d("Sender", e.getMessage());
                 }
             }
         }
 
     }
 
-    private class SocketInitalize extends AsyncTask<String, Void, Void> {
+    private class SocketInitalize extends AsyncTask<String, Void, DataOutputStream> {
 
         @Override
-        protected Void doInBackground(String... strings) {
+        protected DataOutputStream doInBackground(String... strings) {
+            DataOutputStream out = null;
             try {
                 socket = new Socket(strings[0], Integer.parseInt(strings[1]));
+                Log.d("Socket", strings[0]);
+                Log.d("Socket", strings[1]);
                 out = new DataOutputStream(socket.getOutputStream());
             } catch (IOException e) {
-                Log.e("Socket", e.getMessage());
+                Log.d("Socket", e.getMessage());
             }
-            return null;
+            return out;
         }
     }
 }
