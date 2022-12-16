@@ -6,12 +6,17 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.SynchronousQueue;
@@ -19,10 +24,13 @@ import java.util.concurrent.SynchronousQueue;
 public class MainActivity extends AppCompatActivity {
 
     private EditText ip, port, x, y;
-    private AppCompatButton set, next, previous, up, down, tab, click, move, beep;
+    private AppCompatButton set, next, previous, up, down, tab, click, beep, press;
     private long lastClick, currentClick;
     private Socket socket;
     private Sender sender;
+    private View pad;
+    private int distantHeight, distantWidth;
+    private boolean isPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.lastClick = -1;
+        this.isPress = false;
 
         this.ip = this.findViewById(R.id.inputIP);
         this.port = this.findViewById(R.id.inputPort);
@@ -57,6 +66,19 @@ public class MainActivity extends AppCompatActivity {
 
         this.click = this.findViewById(R.id.buttonClick);
         this.click.setOnClickListener(view -> this.onClickAction("click"));
+
+        this.pad = this.findViewById(R.id.pad);
+        this.pad.setOnTouchListener(this::onTouch);
+
+        this.press = this.findViewById(R.id.buttonPress);
+        this.press.setOnClickListener(view -> this.onClickAction("press"));
+    }
+
+    private boolean onTouch(View view, MotionEvent motionEvent) {
+        float xPos = motionEvent.getX() * ((float)this.distantWidth / this.pad.getMeasuredWidth());
+        float yPos = motionEvent.getY() * ((float)this.distantHeight / this.pad.getMeasuredHeight());
+        sender.offer(("move "+(int)xPos+" "+(int)yPos+"\n").getBytes());
+        return true;
     }
 
     private void onClickAction(String string){
@@ -98,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
             case "move":
             case "beep":
                 this.sender.offer("beep\n".getBytes());
+            case "press":
+                if(!isPress){
+                    this.press.setText("Release");
+                    this.sender.offer("mousePress\n".getBytes());
+                    this.isPress = true;
+                } else {
+                    this.press.setText("Press");
+                    this.sender.offer("mouseRelease\n".getBytes());
+                    this.isPress = false;
+                }
             default:
                 Toast toast = Toast.makeText(this, "Send " + string +" !", Toast.LENGTH_SHORT);
                 toast.show();
@@ -105,15 +137,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void enableButtons() {
-        //private AppCompatButton set, next, previous, up, down, tab, click, move, beep;
         this.next.setEnabled(true);
         this.previous.setEnabled(true);
         this.up.setEnabled(true);
         this.down.setEnabled(true);
         this.tab.setEnabled(true);
         this.click.setEnabled(true);
-        this.move.setEnabled(true);
         this.beep.setEnabled(true);
+        this.press.setEnabled(true);
     }
 
     public class Sender extends Thread {
@@ -158,6 +189,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Socket", strings[0]);
                 Log.d("Socket", strings[1]);
                 out = new DataOutputStream(socket.getOutputStream());
+
+                //Get screenSize
+                out.write("getScreenSize\n".getBytes());
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                Scanner sc = new Scanner(in.readLine());
+                distantWidth = sc.nextInt();
+                distantHeight = sc.nextInt();
             } catch (IOException e) {
                 Log.d("Socket", e.getMessage());
             }
