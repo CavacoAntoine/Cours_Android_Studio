@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">tp6</string>
+    <string name="list">Liste de liste de courses</string>
+    <string name="liste_de_course">Liste de courses</string>
+    <string name="ajouter">Ajouter</string>
 </resources>

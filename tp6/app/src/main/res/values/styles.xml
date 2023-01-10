@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.TextAppearance.AppCompat.Button." parent="">
+        <item name="android:background">@drawable/button_layout</item>
+        <item name="android:textSize">15sp</item>
+        <item name="backgroundTint">@color/pale_blue</item>
+        <item name="layout_constraintDimensionRatio">3:1</item>
+    </style>
+</resources>
