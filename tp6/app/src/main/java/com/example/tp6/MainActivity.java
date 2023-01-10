@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -86,11 +85,25 @@ public class MainActivity extends AppCompatActivity {
             return;
         this.listes.add(nom);
         this.stringAdapter.notifyDataSetChanged();
+        this.editText.setText("");
     }
 
     private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String sharedListe = prefs.getString(this.listes.get(position), null);
+        if(sharedListe != null) {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.remove(this.listes.get(position));
+            edit.apply();
+        }
         this.listes.remove(position);
         this.stringAdapter.notifyDataSetChanged();
-        return false;
+        return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.saveList();
     }
 }
