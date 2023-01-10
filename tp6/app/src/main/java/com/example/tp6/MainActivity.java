@@ -8,39 +8,50 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText editText;
-    private Button ajouter;
-    private ListView listeView;
-    private ArrayList<String> items;
-    private ArrayAdapter<String> stringAdapter;
+    private Button addButton;
+    private ListView listView;
+    private ArrayList<listeCourse> listes;
+    private listCourseAdapter stringAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.stringAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
-        listeView.setAdapter(this.stringAdapter);
+        this.listes = new ArrayList<>();
 
-        this.ajouter.setOnClickListener(this::clickAjouter);
+        this.addButton = findViewById(R.id.addButton);
+        this.addButton.setOnClickListener(this::clickAjouter);
 
-        this.listeView.setOnItemLongClickListener(this::longItemClick);
+        this.listView = findViewById(R.id.list);
+        this.stringAdapter = new listCourseAdapter(this, listes);
+        listView.setAdapter(this.stringAdapter);
+        this.listView.setOnItemLongClickListener(this::longItemClick);
+
+        this.editText = findViewById(R.id.editText);
     }
 
     void clickAjouter(View view) {
-        String item = this.editText.getText().toString();
-        this.items.add(item);
+        String nom = this.editText.getText().toString();
+        if(nom.isEmpty())
+            return;
+        this.listes.add(new listeCourse(nom));
         this.stringAdapter.notifyDataSetChanged();
     }
 
     boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        this.items.remove(position);
+        this.listes.remove(position);
         this.stringAdapter.notifyDataSetChanged();
         return false;
     }
