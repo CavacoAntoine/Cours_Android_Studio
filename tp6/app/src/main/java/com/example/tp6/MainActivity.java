@@ -93,6 +93,4 @@ public class MainActivity extends AppCompatActivity {
         this.stringAdapter.notifyDataSetChanged();
         return false;
     }
-
-
 }

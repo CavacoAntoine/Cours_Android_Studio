@@ -21,7 +21,7 @@ public class CourseItem {
         this.quantité++;
     }
 
-    public void decremente() {
+    public void decremente() throws IllegalStateException {
         if(this.quantité == 0) {
             throw new IllegalStateException("La quantité ne peux pas être inférieur à zéro.");
         }
