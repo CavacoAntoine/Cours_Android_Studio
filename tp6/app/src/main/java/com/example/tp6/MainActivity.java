@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView titre;
     private EditText editText;
     private Button addButton;
     private ListView listView;
@@ -38,11 +40,15 @@ public class MainActivity extends AppCompatActivity {
         this.stringAdapter = new listCourseAdapter(this, listes);
         listView.setAdapter(this.stringAdapter);
         this.listView.setOnItemLongClickListener(this::longItemClick);
+        this.listView.setOnItemClickListener(this::itemClick);
 
         this.editText = findViewById(R.id.editText);
     }
 
-    void clickAjouter(View view) {
+    private void itemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    }
+
+    private void clickAjouter(View view) {
         String nom = this.editText.getText().toString();
         if(nom.isEmpty())
             return;
@@ -50,9 +56,11 @@ public class MainActivity extends AppCompatActivity {
         this.stringAdapter.notifyDataSetChanged();
     }
 
-    boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+    private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         this.listes.remove(position);
         this.stringAdapter.notifyDataSetChanged();
         return false;
     }
+
+
 }
