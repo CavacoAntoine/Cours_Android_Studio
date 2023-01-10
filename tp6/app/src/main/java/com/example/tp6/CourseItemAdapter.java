@@ -5,28 +5,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import java.util.List;
 
-public class listCourseAdapter extends BaseAdapter {
+public class CourseItemAdapter extends BaseAdapter {
 
     private Context context;
-    private List<listeCourse> listes;
+    private List<CourseItem> items;
 
-    public listCourseAdapter(Context context, List<listeCourse> listes) {
+    public CourseItemAdapter(Context context, List<CourseItem> items) {
         this.context = context;
-        this.listes = listes;
+        this.items = items;
     }
 
     @Override
     public int getCount() {
-        return this.listes.size();
+        return this.items.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return this.listes.get(i);
+        return this.items.get(i);
     }
 
     @Override
@@ -38,8 +37,6 @@ public class listCourseAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.item, viewGroup, false);
-        TextView textView = (TextView) itemView.findViewById(R.id.nom);
-        textView.setText(this.listes.get(i).getNom());
-        return itemView;
+        return null;
     }
 }

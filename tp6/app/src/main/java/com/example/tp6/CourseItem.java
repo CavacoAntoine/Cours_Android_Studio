@@ -1,10 +1,10 @@
 package com.example.tp6;
 
-public class courseItem {
+public class CourseItem {
     private String nom;
     private int quantité;
 
-    public courseItem(String nom, int quantité) {
+    public CourseItem(String nom, int quantité) {
         this.nom = nom;
         this.quantité = quantité;
     }
