@@ -61,7 +61,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void itemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(this.liste.get(i).getQuantité() == 0){
+        if(this.liste.get(i).getQuantité() == 1){
             this.longItemClick(adapterView,view,i,l);
             return;
         }
@@ -111,6 +111,7 @@ public class ListActivity extends AppCompatActivity {
     private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         this.liste.remove(position);
         this.courseItemAdapter.notifyDataSetChanged();
+        saveList();
         return true;
     }
 
