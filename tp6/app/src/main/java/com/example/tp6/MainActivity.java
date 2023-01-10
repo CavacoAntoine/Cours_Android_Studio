@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
         this.listes.remove(position);
         this.stringAdapter.notifyDataSetChanged();
+        this.saveList();
         return true;
     }
 
