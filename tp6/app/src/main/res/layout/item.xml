@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/nom"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nombre"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/nombre"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineH90"
