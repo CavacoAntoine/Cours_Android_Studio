@@ -14,11 +14,18 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH20"
+    android:id="@+id/guidelineH20"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH30"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH90"
@@ -41,38 +48,82 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addButton"
-        style="@style/Base.TextAppearance.AppCompat.Button."
-        android:layout_width="0dp"
-        android:layout_marginRight="10dp"
-        android:layout_height="0dp"
-        android:text="@string/ajouter"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
-        app:layout_constraintEnd_toStartOf="@id/editText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
-
-    <EditText
-        android:id="@+id/editText"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
-        app:layout_constraintEnd_toStartOf="@id/microButton"
-        app:layout_constraintStart_toEndOf="@+id/addButton"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
-
-    <ImageView
-        android:id="@+id/microButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/micro"
-        android:layout_margin="10dp"
-        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editText"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10" >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV30"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <Button
+            android:id="@+id/addButton"
+            style="@style/Base.TextAppearance.AppCompat.Button."
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/ajouter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:hint="@string/nom"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guidelineV30"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH20" >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV30Micro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <ImageView
+            android:id="@+id/micro"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/micro"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV30Micro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editQuantity"
+            android:layout_width="0dp"
+            android:inputType="number"
+            android:hint="@string/quantit"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guidelineV30Micro"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
         android:id="@+id/list"
@@ -81,7 +132,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH20" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH30" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

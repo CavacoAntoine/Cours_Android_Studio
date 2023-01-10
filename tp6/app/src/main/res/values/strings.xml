@@ -3,4 +3,6 @@
     <string name="list">Liste de liste de courses</string>
     <string name="liste_de_course">Liste de courses</string>
     <string name="ajouter">Ajouter</string>
+    <string name="quantit">Quantité</string>
+    <string name="nom">Nom</string>
 </resources>
