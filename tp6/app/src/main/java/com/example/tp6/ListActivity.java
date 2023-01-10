@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class listActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
 
     private TextView title;
     private ListView listView;
