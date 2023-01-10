@@ -11,13 +11,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.8"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
     <TextView
         android:id="@+id/nom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nombre"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineH10"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
