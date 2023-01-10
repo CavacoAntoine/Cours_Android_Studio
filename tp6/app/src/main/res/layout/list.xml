@@ -75,7 +75,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editNom"
             android:layout_width="0dp"
             android:hint="@string/nom"
             android:layout_height="0dp"
