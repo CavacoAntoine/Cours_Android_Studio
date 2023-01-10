@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,6 +61,10 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void itemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(this.liste.get(i).getQuantité() == 0){
+            this.longItemClick(adapterView,view,i,l);
+            return;
+        }
         this.liste.get(i).decremente();
         this.courseItemAdapter.notifyDataSetChanged();
     }
@@ -72,13 +77,13 @@ public class ListActivity extends AppCompatActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor edit = prefs.edit();
-        edit.putString("items", sharedListe);
+        edit.putString(this.title.getText().toString(), sharedListe);
         edit.apply();
     }
 
     private boolean loadListe(){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String sharedListe = prefs.getString("items", null);
+        String sharedListe = prefs.getString(this.title.getText().toString(), null);
         if(sharedListe == null)
             return false;
 
@@ -93,17 +98,20 @@ public class ListActivity extends AppCompatActivity {
 
     private void clickAjouter(View view) {
         String nom = this.nom.getText().toString();
-        int quantity = Integer.parseInt(this.quantity.getText().toString());
-        if(nom.isEmpty())
+        String quantity = this.quantity.getText().toString();
+        if(nom.isEmpty() || quantity.isEmpty())
             return;
-        this.liste.add(new CourseItem(nom, quantity));
+        this.liste.add(new CourseItem(nom, Integer.parseInt(quantity)));
         this.courseItemAdapter.notifyDataSetChanged();
+        this.nom.setText("");
+        this.quantity.setText("");
+
     }
 
     private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         this.liste.remove(position);
         this.courseItemAdapter.notifyDataSetChanged();
-        return false;
+        return true;
     }
 
     @Override

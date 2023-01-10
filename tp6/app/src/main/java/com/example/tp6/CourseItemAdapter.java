@@ -1,6 +1,7 @@
 package com.example.tp6;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,17 @@ public class CourseItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+
+        CourseItem item = this.items.get(i);
+        Log.d("oioioi",item.getNom());
+        Log.d("oioioi","Q = " + item.getQuantité());
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.item, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.item,viewGroup , false);
         TextView nom = (TextView) itemView.findViewById(R.id.nom);
         TextView quantite = (TextView) itemView.findViewById(R.id.nombre);
 
         nom.setText(this.items.get(i).getNom());
-        quantite.setText(this.items.get(i).getQuantité());
+        quantite.setText(""+this.items.get(i).getQuantité());
         return itemView;
     }
 }
