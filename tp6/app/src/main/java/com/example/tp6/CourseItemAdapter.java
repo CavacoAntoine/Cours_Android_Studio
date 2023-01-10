@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -37,6 +38,11 @@ public class CourseItemAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.item, viewGroup, false);
-        return null;
+        TextView nom = (TextView) itemView.findViewById(R.id.nom);
+        TextView quantite = (TextView) itemView.findViewById(R.id.nombre);
+
+        nom.setText(this.items.get(i).getNom());
+        quantite.setText(this.items.get(i).getQuantité());
+        return itemView;
     }
 }
