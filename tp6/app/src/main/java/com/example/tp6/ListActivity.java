@@ -1,23 +1,30 @@
 package com.example.tp6;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
     private TextView title;
     private EditText nom, quantity;
+    private ImageView micro;
     private ArrayList<CourseItem> liste;
     private CourseItemAdapter courseItemAdapter;
 
@@ -32,11 +39,13 @@ public class ListActivity extends AppCompatActivity {
         this.nom = findViewById(R.id.editNom);
         this.quantity = findViewById(R.id.editQuantity);
         ListView listView = findViewById(R.id.list);
+        this.micro = findViewById(R.id.micro);
 
         buttonBack.setOnClickListener(this::goBack);
         add.setOnClickListener(this::clickAjouter);
         listView.setOnItemLongClickListener(this::longItemClick);
         listView.setOnItemClickListener(this::itemClick);
+        this.micro.setOnClickListener(this::onClickSpeechRecognition);
 
 
         Bundle extras = getIntent().getExtras();
@@ -50,6 +59,28 @@ public class ListActivity extends AppCompatActivity {
 
         this.courseItemAdapter = new CourseItemAdapter(this, this.liste);
         listView.setAdapter(this.courseItemAdapter);
+    }
+
+    public void onClickSpeechRecognition(View v) {
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        //i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fr-FR"); // FR imposé
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Dictez le nom du produit...");
+        try {
+            startActivityForResult(i, 0);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(this, "Désolé, vous ne devez pas avoir l'option ...", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void onActivityResult(int request_code, int result_code, Intent i) {
+        if (request_code == 0 && result_code == RESULT_OK) {
+            List<String> result = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            nom.setText(result.get(0).trim().toLowerCase());
+            // une tentative d'analyse syntaxique, voir avec Scanner
+            // String[] phrase = result.get(0).split("[a-zA-Z0-9-_.~%]{1,900}");
+        }
     }
 
     private void goBack(View view) {
