@@ -26,15 +26,14 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
 
-
         this.title = findViewById(R.id.textList);
         Button add = findViewById(R.id.addButton);
+        Button buttonBack = findViewById(R.id.backButton);
         this.nom = findViewById(R.id.editNom);
         this.quantity = findViewById(R.id.editQuantity);
         ListView listView = findViewById(R.id.list);
 
-
-
+        buttonBack.setOnClickListener(this::goBack);
         add.setOnClickListener(this::clickAjouter);
         listView.setOnItemLongClickListener(this::longItemClick);
         listView.setOnItemClickListener(this::itemClick);
@@ -51,6 +50,11 @@ public class ListActivity extends AppCompatActivity {
 
         this.courseItemAdapter = new CourseItemAdapter(this, this.liste);
         listView.setAdapter(this.courseItemAdapter);
+    }
+
+    private void goBack(View view) {
+        this.saveList();
+        finish();
     }
 
     private void itemClick(AdapterView<?> adapterView, View view, int i, long l) {
