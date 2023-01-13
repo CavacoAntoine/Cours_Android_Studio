@@ -1,16 +1,12 @@
 package com.example.tp6;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,10 +17,7 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity {
 
     private TextView title;
-    private ListView listView;
-    private Button add;
     private EditText nom, quantity;
-    private ImageView micro;
     private ArrayList<CourseItem> liste;
     private CourseItemAdapter courseItemAdapter;
 
@@ -35,16 +28,16 @@ public class ListActivity extends AppCompatActivity {
 
 
         this.title = findViewById(R.id.textList);
-        this.add = findViewById(R.id.addButton);
+        Button add = findViewById(R.id.addButton);
         this.nom = findViewById(R.id.editNom);
         this.quantity = findViewById(R.id.editQuantity);
-        this.listView = findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
 
 
 
-        this.add.setOnClickListener(this::clickAjouter);
-        this.listView.setOnItemLongClickListener(this::longItemClick);
-        this.listView.setOnItemClickListener(this::itemClick);
+        add.setOnClickListener(this::clickAjouter);
+        listView.setOnItemLongClickListener(this::longItemClick);
+        listView.setOnItemClickListener(this::itemClick);
 
 
         Bundle extras = getIntent().getExtras();
@@ -70,14 +63,14 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void saveList() {
-        String sharedListe = "";
+        StringBuilder sharedListe = new StringBuilder();
         for( CourseItem item : this.liste) {
-            sharedListe+= item.getNom() + "," + item.getQuantité() + ",";
+            sharedListe.append(item.getNom()).append(",").append(item.getQuantité()).append(",");
         }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor edit = prefs.edit();
-        edit.putString(this.title.getText().toString(), sharedListe);
+        edit.putString(this.title.getText().toString(), sharedListe.toString());
         edit.apply();
     }
 

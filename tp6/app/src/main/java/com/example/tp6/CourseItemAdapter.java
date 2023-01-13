@@ -1,7 +1,6 @@
 package com.example.tp6;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,8 @@ import java.util.List;
 
 public class CourseItemAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<CourseItem> items;
+    private final Context context;
+    private final List<CourseItem> items;
 
     public CourseItemAdapter(Context context, List<CourseItem> items) {
         this.context = context;
@@ -37,7 +36,7 @@ public class CourseItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.item,viewGroup , false);
         TextView nom = (TextView) itemView.findViewById(R.id.nom);
         TextView quantite = (TextView) itemView.findViewById(R.id.nombre);
