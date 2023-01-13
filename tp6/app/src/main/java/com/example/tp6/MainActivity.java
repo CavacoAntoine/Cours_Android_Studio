@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -25,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!this.loadListes()) {
-            this.listes = new ArrayList<>();
-        }
+        this.listes = new ArrayList<>();
+        this.loadListes();
 
         Button addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(this::clickAjouter);
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         this.saveList();
         Intent intent = new Intent(this, ListActivity.class);
         intent.putExtra("nom", this.listes.get(i).getNom());
+        intent.putExtra("lat", ""+this.listes.get(i).getLatitude());
+        intent.putExtra("long", ""+this.listes.get(i).getLongitude());
         startActivity(intent);
     }
 
@@ -65,23 +67,32 @@ public class MainActivity extends AppCompatActivity {
     private boolean loadListes(){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String sharedListes = prefs.getString("NOMLISTE", null);
-        if(sharedListes == null)
+        if(sharedListes == null){
             return false;
+        }
 
-        String[] listes = sharedListes.split(",");
+        String[] items = sharedListes.split(",");
 
-        for(int i = 0; i < listes.length-2; i++ ) {
-            this.listes.add(new ListItem(listes[i], Double.parseDouble(listes[i+1]), Double.parseDouble(listes[i+2])));
+        for(int i = 0; i < items.length-2; i++ ) {
+            this.listes.add(new ListItem(items[i], Double.parseDouble(items[i+1]), Double.parseDouble(items[i+2])));
         }
         return true;
     }
 
     private void clickAjouter(View view) {
         String nom = this.editText.getText().toString();
-        double latitude = Double.parseDouble(this.editLat.getText().toString()) ;
-        double longitude = Double.parseDouble(this.editLong.getText().toString());
+        String sLat = this.editLat.getText().toString();
+        String sLong = this.editLong.getText().toString();
         if(nom.isEmpty())
             return;
+        if(sLat.isEmpty()){
+            sLat = "0";
+        }
+        if(sLong.isEmpty()){
+            sLong = "0";
+        }
+        double latitude = Double.parseDouble(sLat);
+        double longitude = Double.parseDouble(sLong);
         this.listes.add(new ListItem(nom, latitude, longitude));
         this.listItemAdapter.notifyDataSetChanged();
         this.editText.setText("");
