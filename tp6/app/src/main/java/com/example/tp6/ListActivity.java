@@ -1,11 +1,15 @@
 package com.example.tp6;
 
+import static android.content.Intent.ACTION_VIEW;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,6 +35,7 @@ public class ListActivity extends AppCompatActivity {
     private ArrayList<CourseItem> liste;
     private CourseItemAdapter courseItemAdapter;
     private ActivityResultLauncher<Intent> recognizeSpeech;
+    private ListItem listeItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +60,16 @@ public class ListActivity extends AppCompatActivity {
 
 
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
-            this.title.setText(extras.getString("nom"));
+            String nom = extras.getString("nom");
+            String sLat = extras.getString("lat");
+            String sLong = extras.getString("long");
+            this.title.setText(nom);
+            this.listeItem = new ListItem(extras.getString("nom"), Double.parseDouble(sLat), Double.parseDouble(sLong));
+            if(!(sLat.equals("0") && sLong.equals("0"))){
+                this.title.setOnClickListener(this::goOnGoogleMap);
+            }
         }
 
         if(!this.loadListe()){
@@ -78,6 +91,14 @@ public class ListActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException a) {
             Toast.makeText(this, "Désolé, vous ne devez pas avoir l'option ...", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void goOnGoogleMap(View v) {
+        this.saveList();
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+this.listeItem.getLatitude()+","+this.listeItem.getLongitude());
+        Intent intent = new Intent(ACTION_VIEW, gmmIntentUri);
+        intent.setPackage("com.google.android.apps.maps");
+            startActivity(intent);
     }
 
     public void onActivityResult(ActivityResult result) {
