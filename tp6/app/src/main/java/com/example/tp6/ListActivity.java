@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -27,11 +30,14 @@ public class ListActivity extends AppCompatActivity {
     private ImageView micro;
     private ArrayList<CourseItem> liste;
     private CourseItemAdapter courseItemAdapter;
+    private ActivityResultLauncher<Intent> recognizeSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
+
+        this.recognizeSpeech = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::onActivityResult);
 
         this.title = findViewById(R.id.textList);
         Button add = findViewById(R.id.addButton);
@@ -68,18 +74,17 @@ public class ListActivity extends AppCompatActivity {
         i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fr-FR"); // FR imposé
         i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Dictez le nom du produit...");
         try {
-            startActivityForResult(i, 0);
+            this.recognizeSpeech.launch(i);
         } catch (ActivityNotFoundException a) {
             Toast.makeText(this, "Désolé, vous ne devez pas avoir l'option ...", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void onActivityResult(int request_code, int result_code, Intent i) {
-        if (request_code == 0 && result_code == RESULT_OK) {
-            List<String> result = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            nom.setText(result.get(0).trim().toLowerCase());
-            // une tentative d'analyse syntaxique, voir avec Scanner
-            // String[] phrase = result.get(0).split("[a-zA-Z0-9-_.~%]{1,900}");
+    public void onActivityResult(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            assert result.getData() != null;
+            List<String> speech = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            nom.setText(speech.get(0).trim().toLowerCase());
         }
     }
 
