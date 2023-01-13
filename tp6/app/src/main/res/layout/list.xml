@@ -14,7 +14,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guidelineH20"
+    android:id="@+id/guidelineH30"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -51,7 +51,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineH10" >
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH20">
+        app:layout_constraintTop_toTopOf="@+id/guidelineH30">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineV30Micro"
