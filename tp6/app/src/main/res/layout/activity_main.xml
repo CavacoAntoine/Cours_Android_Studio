@@ -96,8 +96,8 @@
             android:layout_height="0dp"
             android:hint="@string/longitude"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineV65"
-            app:layout_constraintStart_toEndOf="@+id/guidelineV30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV65"
             app:layout_constraintTop_toTopOf="@+id/guidelineH50" />
 
         <EditText
@@ -106,8 +106,8 @@
             android:layout_height="0dp"
             android:hint="@string/latitude"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editLong"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV65"
+            app:layout_constraintStart_toEndOf="@+id/guidelineV30"
             app:layout_constraintTop_toTopOf="@+id/guidelineH50" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
