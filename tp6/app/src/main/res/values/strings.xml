@@ -6,4 +6,6 @@
     <string name="quantit">Quantité</string>
     <string name="nom">Nom</string>
     <string name="retour">Retour</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
 </resources>
