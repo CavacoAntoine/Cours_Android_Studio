@@ -14,7 +14,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guidelineH30"
+    android:id="@+id/guidelineH20"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -39,7 +39,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="@string/list"
         android:textColor="@color/purple_200"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -51,7 +50,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineH10" >
@@ -77,8 +76,8 @@
         <EditText
             android:id="@+id/editNom"
             android:layout_width="0dp"
-            android:hint="@string/nom"
             android:layout_height="0dp"
+            android:hint="@string/nom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guidelineV30"
@@ -93,7 +92,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH30">
+        app:layout_constraintTop_toTopOf="@+id/guidelineH20">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineV30Micro"
