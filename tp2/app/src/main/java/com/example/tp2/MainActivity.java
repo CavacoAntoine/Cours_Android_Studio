@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         try{
             this.calculette.enter(Integer.parseInt(this.editText.getText().toString()));
         } catch (NumberFormatException e) {
-            this.showError(this.editText.getText().toString() + " n'est pas nombre");
+            this.showError(this.editText.getText().toString() + " n'est pas un nombre");
         } catch (CalculetteException e) {
             this.showError(e.getMessage());
         }
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
             this.calculette.add();
         } catch (CalculetteException e) {
             this.showError(e.getMessage());
-
         }
     }
 
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         SmsManager sm = SmsManager.getDefault();
         String body = getString(R.string.app_name) + " : " + message + "\n";
-        sm.sendTextMessage("5554", null, body, null, null);
+        sm.sendTextMessage("+33768024240", null, body, null, null);
 
     }
 

@@ -9,7 +9,7 @@ package com.example.tp2.pile;
 public class PileVideException extends Exception{
 
   public PileVideException(){
-    super();
+    super("Pile vide exception");
   }
   public PileVideException(String message){
     super(message);
