@@ -58,14 +58,15 @@ public class MainActivity extends AppCompatActivity {
             sharedListe.append(liste.getNom()).append(",").append(liste.getLatitude()).append(",").append(liste.getLongitude()).append(",");
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();
+        edit.clear();
         edit.putString("NOMLISTE", sharedListe.toString());
         edit.apply();
     }
 
     private boolean loadListes(){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
         String sharedListes = prefs.getString("NOMLISTE", null);
         if(sharedListes == null){
             return false;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         String[] items = sharedListes.split(",");
 
-        for(int i = 0; i < items.length-2; i++ ) {
+        for(int i = 0; i < items.length-2; i+=3) {
             this.listes.add(new ListItem(items[i], Double.parseDouble(items[i+1]), Double.parseDouble(items[i+2])));
         }
         return true;
@@ -81,33 +82,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void clickAjouter(View view) {
         String nom = this.editText.getText().toString();
-        String sLat = this.editLat.getText().toString();
-        String sLong = this.editLong.getText().toString();
-        if(nom.isEmpty())
+        if (nom.isEmpty())
             return;
-        if(sLat.isEmpty()){
-            sLat = "0";
+        ListItem newItem = new ListItem(nom);
+        if(!this.listes.contains(newItem)) {
+            String sLat = this.editLat.getText().toString();
+            String sLong = this.editLong.getText().toString();
+            if (sLat.isEmpty()) {
+                sLat = "0";
+            }
+            if (sLong.isEmpty()) {
+                sLong = "0";
+            }
+            newItem.setLatitude(Double.parseDouble(sLat));
+            newItem.setLongitude(Double.parseDouble(sLong));
+            this.listes.add(newItem);
+            this.listItemAdapter.notifyDataSetChanged();
         }
-        if(sLong.isEmpty()){
-            sLong = "0";
-        }
-        double latitude = Double.parseDouble(sLat);
-        double longitude = Double.parseDouble(sLong);
-        this.listes.add(new ListItem(nom, latitude, longitude));
-        this.listItemAdapter.notifyDataSetChanged();
         this.editText.setText("");
         this.editLat.setText("");
         this.editLong.setText("");
     }
 
     private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String sharedListe = prefs.getString(this.listes.get(position).getNom(), null);
-        if(sharedListe != null) {
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.remove(this.listes.get(position).getNom() + "," + this.listes.get(position).getLatitude() + "," + this.listes.get(position).getLongitude()+",");
-            edit.apply();
-        }
+        SharedPreferences shared = this.getSharedPreferences(ListActivity.PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor edit = shared.edit();
+        edit.remove(this.listes.get(position).getNom());
+        edit.apply();
         this.listes.remove(position);
         this.listItemAdapter.notifyDataSetChanged();
         this.saveList();

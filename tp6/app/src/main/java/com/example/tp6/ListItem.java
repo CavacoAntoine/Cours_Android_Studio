@@ -11,8 +11,22 @@ public class ListItem {
         this.longitude = longitude;
     }
 
+    public ListItem(String nom) {
+        this.nom = nom;
+        this.latitude = 0;
+        this.longitude = 0;
+    }
+
     public String getNom() {
         return nom;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public double getLatitude() {
@@ -21,5 +35,16 @@ public class ListItem {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o)
+            return true;
+        if(o == null)
+            return false;
+        if(o.getClass() != this.getClass())
+            return false;
+        return this.nom.equals(((ListItem) o).getNom());
     }
 }

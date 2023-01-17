@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void save(){
         if(!this.isFinish) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
             SharedPreferences.Editor edit = prefs.edit();
             edit.putString("LOGS" + this.numero, this.log.getText().toString());
             edit.apply();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void load() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
         String sharedLogs = prefs.getString("LOGS" + this.numero, null);
         if(sharedLogs != null) {
             this.log.setText(sharedLogs);
@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clear(View view) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();
-        edit.clear();
+        edit.remove("LOGS" + this.numero);
         edit.apply();
         this.log.setText("");
         this.isFinish = true;
