@@ -9,7 +9,7 @@ package com.example.tp2.pile;
 public class PilePleineException extends Exception{
 
   public PilePleineException(){
-    super();
+    super("Pile pleine exception");
   }
   public PilePleineException(String message){
     super(message);
