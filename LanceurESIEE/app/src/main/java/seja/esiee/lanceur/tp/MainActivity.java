@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         tp6 = (Button)findViewById(R.id.button6);
         intent.setAction(getString(R.string.tp6));
-        tp6.setEnabled(isIntentAvailable(this,intent));
+        //tp6.setEnabled(isIntentAvailable(this,intent));
         //setBackgroundColor(tp6);
         //tp6.setBackgroundColor(getRandomColor());
         //tp6.setTextColor(getRandomColor());

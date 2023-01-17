@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -98,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
             newItem.setLongitude(Double.parseDouble(sLong));
             this.listes.add(newItem);
             this.listItemAdapter.notifyDataSetChanged();
+        }else {
+            Toast toast = Toast.makeText(this, "Cette liste existe déjà.", Toast.LENGTH_SHORT);
+            toast.show();
         }
         this.editText.setText("");
         this.editLat.setText("");
