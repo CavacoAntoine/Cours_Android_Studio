@@ -1,6 +1,7 @@
 package com.example.tp4;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private HumiditySensorAbstract ds2438;
-    private Button buttonStart, buttonStop, buttonSet;
+    private AppCompatButton buttonStart, buttonStop, buttonSet;
     private TextView textView;
     private EditText editText;
     private ProgressBar progressBar;

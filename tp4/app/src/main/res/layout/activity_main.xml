@@ -11,27 +11,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.31" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,37 +59,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonStart"
+        style="@style/Base.TextAppearance.AppCompat.Button."
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/start"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
-        app:layout_constraintEnd_toStartOf="@id/buttonStop"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guidelineH10" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonStop"
+        style="@style/Base.TextAppearance.AppCompat.Button."
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/stop"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
-        app:layout_constraintEnd_toStartOf="@id/buttonSet"
-        app:layout_constraintStart_toEndOf="@id/buttonStart"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV66"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV33"
         app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSet"
+        style="@style/Base.TextAppearance.AppCompat.Button."
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:text="@string/set"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH20"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonStop"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV66"
         app:layout_constraintTop_toTopOf="@+id/guidelineH10" />
 
     <TextView
@@ -84,6 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
