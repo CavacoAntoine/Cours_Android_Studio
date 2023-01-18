@@ -4,34 +4,55 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineH90"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH60"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH90"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
 
     <TextView
-        android:textSize="30sp"
         android:id="@+id/nom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nombre"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineH60"
         app:layout_constraintStart_toStartOf="@+id/guidelineH10"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/nom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineH90"
+        app:layout_constraintStart_toStartOf="@+id/guidelineH60"
+        app:layout_constraintTop_toTopOf="@+id/nom"/>
 
     <TextView
         android:id="@+id/nombre"
         android:layout_width="0dp"
         android:textSize="30sp"
+        android:layout_margin="5dp"
+        android:background="@drawable/textform"
+        android:gravity="center"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

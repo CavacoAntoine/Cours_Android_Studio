@@ -21,6 +21,13 @@
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH40"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH90"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,12 +49,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH10" >
+        app:layout_constraintTop_toTopOf="@+id/guidelineH10">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineH50"
@@ -113,7 +121,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
     <ListView
         android:id="@+id/list"
         android:layout_width="0dp"
@@ -121,7 +128,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH30" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineH40" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

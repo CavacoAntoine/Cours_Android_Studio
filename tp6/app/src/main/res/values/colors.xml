@@ -9,4 +9,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pale_blue">#ade8f4</color>
     <color name="blue">#90e0ef</color>
+    <color name="deg1">#ffceff</color>
+    <color name="deg2">#ffc9ff</color>
+    <color name="deg3">#ffc4ff</color>
+    <color name="deg4">#ffb7ff</color>
+    <color name="deg5">#f2a8ff</color>
+    <color name="deg6">#e498ff</color>
+    <color name="deg7">#d689ff</color>
+    <color name="deg8">#c879ff</color>
+    <color name="deg9">#b66ee8</color>
+    <color name="deg10">#a564d3</color>
+
+
 </resources>
