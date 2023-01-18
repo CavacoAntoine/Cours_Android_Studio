@@ -20,11 +20,6 @@
             android:name=".MainActivity"
             android:exported="true"
             android:permission="login.permission.CALL_LOGIN">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="APPLI_LOGIN" />
