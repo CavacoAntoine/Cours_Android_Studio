@@ -1,5 +1,6 @@
 package com.example.tp4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private HumidityAssynTask humidityAssynTask;
     private View view;
+    private boolean isStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +63,14 @@ public class MainActivity extends AppCompatActivity {
         this.buttonStop.setClickable(true);
         this.buttonStart.setClickable(false);
         humidityAssynTask.execute();
+        this.isStart = true;
     }
 
     private void stop() {
         if(this.humidityAssynTask != null) {
             this.humidityAssynTask.cancel(true);
         }
+        this.isStart = false;
     }
 
     private void setEdit() {
@@ -97,7 +101,29 @@ public class MainActivity extends AppCompatActivity {
         return prefs.getString("url_sensor", null);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(this.isStart) {
+            this.stop();
+            this.isStart = true;
+        }
+    }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isStart", this.isStart );
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.isStart = savedInstanceState.getBoolean("isStart");
+        if(this.isStart) {
+            this.start();
+        }
+    }
 
     private class HumidityAssynTask extends AsyncTask<Void, Float, Boolean> {
 
