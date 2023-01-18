@@ -3,6 +3,7 @@ package com.example.tp5;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.ip = this.findViewById(R.id.inputIP);
         this.port = this.findViewById(R.id.inputPort);
+        this.load();
 
         this.set = this.findViewById(R.id.buttonSet);
         this.set.setOnClickListener(view -> this.onClickAction("set"));
@@ -93,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     this.sender = new Sender(socketInitalize.get());
                     Toast toast = Toast.makeText(this, "Connexion effectué !", Toast.LENGTH_SHORT);
                     toast.show();
-                } catch (ExecutionException e) {
-                    Log.d("Set",e.getMessage());
-                } catch (InterruptedException e) {
+                } catch (ExecutionException | InterruptedException e) {
                     Log.d("Set",e.getMessage());
                 }
                 break;
@@ -155,6 +155,30 @@ public class MainActivity extends AppCompatActivity {
         this.click.setEnabled(true);
         this.beep.setEnabled(true);
         this.press.setEnabled(true);
+    }
+
+    private void save(){
+        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("IP", this.ip.getText().toString());
+        edit.putString("PORT", this.port.getText().toString());
+        edit.apply();
+    }
+
+    private void load() {
+        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
+        String ip = prefs.getString("IP", null);
+        String port = prefs.getString("PORT", null);
+        if(ip != null && port != null) {
+            this.ip.setText(ip);
+            this.port.setText(port);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.save();
     }
 
     public class Sender extends Thread {
