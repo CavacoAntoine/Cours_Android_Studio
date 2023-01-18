@@ -9,12 +9,21 @@ public class CourseItem {
         this.quantité = quantité;
     }
 
+    public CourseItem(String nom) {
+        this.nom = nom;
+        this.quantité = 0;
+    }
+
     public String getNom() {
         return nom;
     }
 
     public int getQuantité() {
         return quantité;
+    }
+
+    public void incremente(int add) {
+        this.quantité += add;
     }
 
     public void incremente() {
