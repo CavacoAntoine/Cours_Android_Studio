@@ -2,6 +2,7 @@ package com.example.tp3;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -65,19 +66,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void save() {
-        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putString("NUM",this.editTextCall.getText().toString());
-        edit.apply();
-
-    }
-
-    private void load() {
-        SharedPreferences prefs = this.getPreferences(MODE_PRIVATE);
-        this.editTextCall.setText(prefs.getString("NUM", ""));
-    }
-
     private void web() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://www.ecosia.org"));
@@ -95,38 +83,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        this.load();
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("tel", this.editTextCall.getText().toString() );
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        this.load();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        this.save();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.save();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        this.save();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        this.load();
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.editTextCall.setText(savedInstanceState.getString("tel"));
     }
 }
