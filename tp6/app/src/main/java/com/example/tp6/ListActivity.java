@@ -29,6 +29,8 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
+    public static final String PREF_NAME = "COURSES";
+
     private TextView title;
     private EditText nom, quantity;
     private ImageView micro;
@@ -83,8 +85,7 @@ public class ListActivity extends AppCompatActivity {
     public void onClickSpeechRecognition(View v) {
         Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        //i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fr-FR"); // FR imposé
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fr-FR");
         i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Dictez le nom du produit...");
         try {
             this.recognizeSpeech.launch(i);
@@ -109,8 +110,6 @@ public class ListActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void goBack(View view) {
         this.saveList();
         finish();
@@ -131,14 +130,14 @@ public class ListActivity extends AppCompatActivity {
             sharedListe.append(item.getNom()).append(",").append(item.getQuantité()).append(",");
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = this.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();
         edit.putString(this.title.getText().toString(), sharedListe.toString());
         edit.apply();
     }
 
     private boolean loadListe(){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = this.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         String sharedListe = prefs.getString(this.title.getText().toString(), null);
         if(sharedListe == null)
             return false;
@@ -146,7 +145,7 @@ public class ListActivity extends AppCompatActivity {
         String[] items = sharedListe.split(",");
 
         this.liste = new ArrayList<>();
-        for(int i = 0; i<items.length-1; i++) {
+        for(int i = 0; i<items.length-1; i+=2) {
             this.liste.add(new CourseItem(items[i],Integer.parseInt(items[i+1])));
         }
         return true;
@@ -167,7 +166,7 @@ public class ListActivity extends AppCompatActivity {
     private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         this.liste.remove(position);
         this.courseItemAdapter.notifyDataSetChanged();
-        saveList();
+        this.saveList();
         return true;
     }
 
