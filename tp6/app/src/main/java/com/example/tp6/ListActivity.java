@@ -156,11 +156,16 @@ public class ListActivity extends AppCompatActivity {
         String quantity = this.quantity.getText().toString();
         if(nom.isEmpty() || quantity.isEmpty())
             return;
-        this.liste.add(new CourseItem(nom, Integer.parseInt(quantity)));
+        CourseItem newItem = new CourseItem(nom);
+        if(this.liste.contains(newItem)) {
+            CourseItem oldItem = this.liste.get(this.liste.indexOf(newItem));
+            oldItem.incremente(Integer.parseInt(quantity));
+        }else {
+            this.liste.add(new CourseItem(nom, Integer.parseInt(quantity)));
+        }
         this.courseItemAdapter.notifyDataSetChanged();
         this.nom.setText("");
         this.quantity.setText("");
-
     }
 
     private boolean longItemClick(AdapterView<?> adapterView, View view, int position, long id) {
