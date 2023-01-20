@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         this.click.setOnClickListener(view -> this.onClickAction("click"));
 
         this.pad = this.findViewById(R.id.pad);
-        this.pad.setOnTouchListener(this::onTouch);
+
 
         this.press = this.findViewById(R.id.buttonPress);
         this.press.setOnClickListener(view -> this.onClickAction("press"));
@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         this.click.setEnabled(true);
         this.beep.setEnabled(true);
         this.press.setEnabled(true);
+        this.pad.setOnTouchListener(this::onTouch);
     }
 
     private void save(){
